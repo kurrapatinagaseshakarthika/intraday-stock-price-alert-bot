@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - Stock Alert Bot</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+        <!-- LEFT SIDE -->
+        <div class="auth-brand-section">
+
+            <div class="auth-brand">
+
+                <div class="auth-brand-icon">
+                    📈
+                </div>
+
+                <div>
+                    <h1>Stock Alert Bot</h1>
+                    <p>Intraday Market Monitoring System</p>
+                </div>
+
+            </div>
+
+
+            <div class="auth-intro">
+
+                <span class="auth-label">
+                    INTRADAY STOCK MONITORING
+                </span>
+
+                <h2>
+                    Welcome back to your
+                    <span>market dashboard.</span>
+                </h2>
+
+                <p>
+                    Monitor NSE stocks, create price alerts,
+                    and receive Telegram notifications when
+                    your target price is reached.
+                </p>
+
+
+                <div class="auth-features">
+
+                    <div class="auth-feature">
+
+                        <div class="feature-icon blue">
+                            📊
+                        </div>
+
+                        <div>
+                            <h3>Live Stock Prices</h3>
+                            <p>
+                                Check the latest available
+                                stock prices.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-feature">
+
+                        <div class="feature-icon green">
+                            🔔
+                        </div>
+
+                        <div>
+                            <h3>Price Alerts</h3>
+                            <p>
+                                Create alerts for your
+                                selected NSE stocks.
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-feature">
+
+                        <div class="feature-icon amber">
+                            ⚡
+                        </div>
+
+                        <div>
+                            <h3>Instant Notifications</h3>
+                            <p>
+                                Receive Telegram alerts when
+                                conditions are reached.
+                            </p>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="auth-form-section">
+
+            <div class="auth-card">
+
+                <div class="mobile-logo">
+                    📈
+                </div>
+
+
+                <div class="auth-heading">
+
+                    <span class="section-label">
+                        ACCOUNT ACCESS
+                    </span>
+
+                    <h2>Welcome Back</h2>
+
+                    <p>
+                        Login to access your stock dashboard.
+                    </p>
+
+                </div>
+
+
+                <!-- LOGIN FORM -->
+                <form method="POST" action="/login">
+
+
+                    <!-- EMAIL -->
+                    <div class="auth-input-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span>✉️</span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+                    <div class="auth-input-group">
+
+                        <div class="password-label">
+
+                            <label for="password">
+                                Password
+                            </label>
+
+                        </div>
+
+                        <div class="auth-input">
+
+                            <span>🔒</span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Enter your password"
+                                autocomplete="current-password"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- LOGIN BUTTON -->
+                    <button
+                        type="submit"
+                        class="auth-button">
+
+                        Login to Dashboard
+                        <span>→</span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- SIGN UP -->
+                <div class="auth-divider">
+                    <span>New to Stock Alert Bot?</span>
+                </div>
+
+
+                <a href="/signup"
+                   class="secondary-button">
+
+                    Create New Account
+
+                </a>
+
+
+                <div class="auth-footer">
+
+                    <p>
+                        📈 Intraday Stock Alert Bot
+                    </p>
+
+                    <span>
+                        Python • Flask • MySQL • yFinance • Telegram
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

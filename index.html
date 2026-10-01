@@ -1,0 +1,772 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Dashboard - Stock Alert Bot</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+
+</head>
+
+<body>
+
+
+<!-- =====================================================
+     TOP HEADER
+     ===================================================== -->
+
+<header class="top-header">
+
+    <div class="header-inner">
+
+        <!-- BRAND -->
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                📈
+            </div>
+
+            <div class="brand-text">
+
+                <h1>
+                    Stock Alert Bot
+                </h1>
+
+                <p>
+                    Intraday Market Monitoring System
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- HEADER RIGHT -->
+
+        <div class="header-actions">
+
+            <!-- SYSTEM STATUS -->
+
+            <div class="online-status">
+
+                <span class="online-dot"></span>
+
+                <span>
+                    System Online
+                </span>
+
+            </div>
+
+
+            <!-- USER -->
+
+            <div class="user-box">
+
+                <div class="avatar">
+                    👤
+                </div>
+
+                <div class="user-text">
+
+                    <strong>
+                        {{ user_name }}
+                    </strong>
+
+                    <span>
+                        {{ user_email }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOGOUT -->
+
+            <a href="/logout"
+               class="logout-btn">
+
+                Logout
+
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN DASHBOARD
+     ===================================================== -->
+
+<main class="dashboard">
+
+
+    <!-- =================================================
+         PAGE HEADER
+         ================================================= -->
+
+    <section class="page-intro">
+
+        <div>
+
+            <span class="eyebrow">
+                DASHBOARD
+            </span>
+
+            <h2>
+                <span class="intro-icon">📊</span>
+                Market Overview
+            </h2>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MARKET STATUS
+         ================================================= -->
+
+    <section class="market-status-card">
+
+        <div class="market-info">
+
+            <div class="market-logo">
+                🏦
+            </div>
+
+            <div>
+
+                <h3>
+                    <span class="eyebrow"
+                          style="color:white;">
+                        NSE MARKET
+                    </span>
+                </h3>
+
+                <h3 id="marketStatus">
+                    Checking market status...
+                </h3>
+
+                <p id="marketMessage">
+                    Please wait...
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="market-clock">
+
+            <div class="clock-status">
+
+                <span id="statusDot"
+                      class="status-dot">
+                </span>
+
+                <strong id="marketTime">
+                    --:--:--
+                </strong>
+
+            </div>
+
+            <p>
+                Trading hours: 9:15 AM – 3:30 PM
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         STATISTICS
+         ================================================= -->
+
+    <section class="stats-grid">
+
+
+        <!-- TOTAL ALERTS -->
+
+        <div class="stat-card">
+
+            <div class="stat-card-top">
+
+                <span class="stat-title">
+                    TOTAL ALERTS
+                </span>
+
+                <div class="stat-icon blue">
+                    📊
+                </div>
+
+            </div>
+
+            <h3 id="totalAlerts">
+                0
+            </h3>
+
+            <p class="stat-description">
+                All created alerts
+            </p>
+
+        </div>
+
+
+
+        <!-- ACTIVE ALERTS -->
+
+        <div class="stat-card">
+
+            <div class="stat-card-top">
+
+                <span class="stat-title">
+                    ACTIVE ALERTS
+                </span>
+
+                <div class="stat-icon green">
+                    🔔
+                </div>
+
+            </div>
+
+            <h3 id="activeAlertsCount">
+                0
+            </h3>
+
+            <p class="stat-description">
+                Currently monitoring
+            </p>
+
+        </div>
+
+
+
+        <!-- TRIGGERED ALERTS -->
+
+        <div class="stat-card">
+
+            <div class="stat-card-top">
+
+                <span class="stat-title">
+                    TRIGGERED
+                </span>
+
+                <div class="stat-icon red">
+                    ⚡
+                </div>
+
+            </div>
+
+            <h3 id="triggeredAlertsCount">
+                0
+            </h3>
+
+            <p class="stat-description">
+                Successfully triggered
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         MAIN WORKSPACE
+         IMPORTANT: main-grid
+         ================================================= -->
+
+    <section class="main-grid">
+
+
+        <!-- =================================================
+             MARKET DATA
+             ================================================= -->
+
+        <div class="dashboard-card">
+
+
+            <div class="card-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        MARKET DATA
+                    </span>
+
+                    <h3>
+                        💹 Live Stock Price
+                    </h3>
+
+                </div>
+
+
+                <span class="card-badge">
+                    LIVE
+                </span>
+
+            </div>
+
+
+
+            <!-- PRICE FORM -->
+
+            <div class="price-form">
+
+                <div class="form-field">
+
+                    <label for="priceSymbol">
+                        NSE Stock Symbol
+                    </label>
+
+
+                    <div class="input-button-row">
+
+                        <input
+                            type="text"
+                            id="priceSymbol"
+                            placeholder="RELIANCE"
+                            autocomplete="off"
+                        >
+
+
+                        <button
+                            type="button"
+                            class="primary-btn"
+                            onclick="getStockPrice()">
+
+                            🔍 Check Price
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- PRICE RESULT -->
+
+            <div id="priceResult"
+                 class="price-result">
+
+                <div>
+
+                    <div class="price-value">
+                        ₹
+                    </div>
+
+                    <div class="price-symbol">
+                        Ready to check
+                    </div>
+
+                    <div class="price-time">
+                        Enter an NSE stock symbol to view its latest available price.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =================================================
+             ALERT MANAGEMENT
+             ================================================= -->
+
+        <div class="dashboard-card">
+
+
+            <div class="card-heading">
+
+                <div>
+
+                    <span class="eyebrow">
+                        ALERT MANAGEMENT
+                    </span>
+
+                    <h3>
+                        🔔 Create Stock Alert
+                    </h3>
+
+                </div>
+
+
+                <span class="card-badge">
+                    NEW
+                </span>
+
+            </div>
+
+
+
+            <!-- ALERT FORM -->
+
+            <form id="alertForm">
+
+
+                <!-- STOCK + TARGET -->
+
+                <div class="form-row">
+
+
+                    <div class="form-field">
+
+                        <label for="symbol">
+                            Stock Symbol
+                        </label>
+
+                        <input
+                            type="text"
+                            id="symbol"
+                            placeholder="TCS"
+                            autocomplete="off"
+                            required
+                        >
+
+                    </div>
+
+
+
+                    <div class="form-field">
+
+                        <label for="target_price">
+                            Target Price
+                        </label>
+
+                        <input
+                            type="number"
+                            id="target_price"
+                            placeholder="2105"
+                            step="0.01"
+                            min="0"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CONDITION + BUTTON -->
+
+                <div class="form-row">
+
+
+                    <div class="form-field">
+
+                        <label for="condition_type">
+                            Condition
+                        </label>
+
+                        <select
+                            id="condition_type"
+                            required>
+
+                            <option value=">=">
+                                Price ≥ Target
+                            </option>
+
+                            <option value="<=">
+                                Price ≤ Target
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+
+                    <div class="form-field button-field">
+
+                        <label>
+                            &nbsp;
+                        </label>
+
+                        <button
+                            type="submit"
+                            class="primary-btn full-btn">
+
+                            + Create Alert
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+            </form>
+
+
+            <!-- MESSAGE -->
+
+            <div id="message">
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================================
+         ACTIVE ALERTS
+         ================================================= -->
+
+    <section class="dashboard-card table-card">
+
+
+        <div class="card-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    MONITORING
+                </span>
+
+                <h3>
+                    🔔 Active Alerts
+                </h3>
+
+            </div>
+
+
+            <span class="live-label">
+                LIVE
+            </span>
+
+        </div>
+
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            STOCK
+                        </th>
+
+                        <th>
+                            TARGET PRICE
+                        </th>
+
+                        <th>
+                            CONDITION
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                        <th>
+                            ACTION
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="activeAlertsTable">
+
+                    <tr>
+
+                        <td colspan="6"
+                            class="empty-state">
+
+                            <div class="empty-state-icon">
+                                🔔
+                            </div>
+
+                            <p>
+                                No active alerts yet.
+                            </p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         ALERT HISTORY
+         ================================================= -->
+
+    <section class="dashboard-card table-card">
+
+
+        <div class="card-heading">
+
+            <div>
+
+                <span class="eyebrow">
+                    RECORDS
+                </span>
+
+                <h3>
+                    📋 Alert History
+                </h3>
+
+            </div>
+
+
+            <span class="card-badge">
+                HISTORY
+            </span>
+
+        </div>
+
+
+
+        <div class="table-wrapper">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            ID
+                        </th>
+
+                        <th>
+                            STOCK
+                        </th>
+
+                        <th>
+                            TARGET PRICE
+                        </th>
+
+                        <th>
+                            CONDITION
+                        </th>
+
+                        <th>
+                            STATUS
+                        </th>
+
+                        <th>
+                            TRIGGERED AT
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="alertHistoryTable">
+
+                    <tr>
+
+                        <td colspan="6"
+                            class="empty-state">
+
+                            <div class="empty-state-icon">
+                                📋
+                            </div>
+
+                            <p>
+                                No triggered alerts yet.
+                            </p>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     FOOTER
+     ===================================================== -->
+
+<footer class="footer">
+
+    <div>
+
+        <strong>
+            📈 Stock Alert Bot
+        </strong>
+
+        <span>
+            Intraday Market Monitoring System
+        </span>
+
+    </div>
+
+
+    <div style="margin-top: 8px;">
+
+        Python • Flask • MySQL • yFinance • Telegram
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+     ===================================================== -->
+
+<script src="{{ url_for('static', filename='js/script.js') }}">
+</script>
+
+
+</body>
+
+</html>
+

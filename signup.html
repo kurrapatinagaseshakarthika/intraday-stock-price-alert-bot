@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account - Stock Alert Bot</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/auth.css') }}">
+
+</head>
+
+<body>
+
+    <div class="auth-page">
+
+
+        <!-- LEFT SIDE -->
+        <div class="auth-brand-section">
+
+            <div class="auth-brand">
+
+                <div class="auth-brand-icon">
+                    📈
+                </div>
+
+                <div>
+                    <h1>Stock Alert Bot</h1>
+                    <p>Intraday Market Monitoring System</p>
+                </div>
+
+            </div>
+
+
+            <div class="auth-intro">
+
+                <span class="auth-label">
+                    CREATE YOUR ACCOUNT
+                </span>
+
+                <h2>
+                    Start monitoring the
+                    <span>market smarter.</span>
+                </h2>
+
+                <p>
+                    Create your personal account to manage
+                    your stock alerts and monitor NSE prices
+                    from one dashboard.
+                </p>
+
+
+                <div class="auth-features">
+
+
+                    <div class="auth-feature">
+
+                        <div class="feature-icon blue">
+                            📈
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                NSE Market Monitoring
+                            </h3>
+
+                            <p>
+                                Monitor your selected stocks
+                                during market hours.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-feature">
+
+                        <div class="feature-icon green">
+                            🎯
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Custom Price Targets
+                            </h3>
+
+                            <p>
+                                Set your own price conditions
+                                for each stock.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="auth-feature">
+
+                        <div class="feature-icon amber">
+                            📱
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Telegram Alerts
+                            </h3>
+
+                            <p>
+                                Receive notifications when
+                                your alert is triggered.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- RIGHT SIDE -->
+        <div class="auth-form-section">
+
+            <div class="auth-card signup-card">
+
+                <div class="mobile-logo">
+                    📈
+                </div>
+
+
+                <div class="auth-heading">
+
+                    <span class="section-label">
+                        NEW ACCOUNT
+                    </span>
+
+                    <h2>Create Account</h2>
+
+                    <p>
+                        Sign up to start monitoring stocks.
+                    </p>
+
+                </div>
+
+
+                <!-- SIGNUP FORM -->
+                <form method="POST" action="/signup">
+
+
+                    <!-- NAME -->
+                    <div class="auth-input-group">
+
+                        <label for="name">
+                            Full Name
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span>👤</span>
+
+                            <input
+                                type="text"
+                                id="name"
+                                name="name"
+                                placeholder="Enter your full name"
+                                autocomplete="name"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- EMAIL -->
+                    <div class="auth-input-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span>✉️</span>
+
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder="Enter your email"
+                                autocomplete="email"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- PASSWORD -->
+                    <div class="auth-input-group">
+
+                        <label for="password">
+                            Password
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span>🔒</span>
+
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder="Create a password"
+                                autocomplete="new-password"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CONFIRM PASSWORD -->
+                    <div class="auth-input-group">
+
+                        <label for="confirm_password">
+                            Confirm Password
+                        </label>
+
+                        <div class="auth-input">
+
+                            <span>🔐</span>
+
+                            <input
+                                type="password"
+                                id="confirm_password"
+                                name="confirm_password"
+                                placeholder="Confirm your password"
+                                autocomplete="new-password"
+                                required>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- TERMS -->
+                    <div class="terms-row">
+
+                        <input
+                            type="checkbox"
+                            id="terms"
+                            required>
+
+                        <label for="terms">
+                            I agree to the terms and conditions.
+                        </label>
+
+                    </div>
+
+
+                    <!-- SIGNUP BUTTON -->
+                    <button
+                        type="submit"
+                        class="auth-button">
+
+                        Create Account
+                        <span>→</span>
+
+                    </button>
+
+                </form>
+
+
+                <!-- LOGIN LINK -->
+                <div class="auth-switch">
+
+                    <span>
+                        Already have an account?
+                    </span>
+
+                    <a href="/login">
+                        Login
+                    </a>
+
+                </div>
+
+
+                <div class="auth-footer">
+
+                    <p>
+                        📈 Intraday Stock Alert Bot
+                    </p>
+
+                    <span>
+                        Python • Flask • MySQL • yFinance • Telegram
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
